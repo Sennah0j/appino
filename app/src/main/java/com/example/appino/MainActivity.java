@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 
+import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
@@ -82,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
         Second most important piece of Code. GUI Handler
          */
         handler = new Handler(Looper.getMainLooper()) {
+            @SuppressLint("SetTextI18n")
             @Override
             public void handleMessage(Message msg) {
                 switch (msg.what) {
@@ -130,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Button to ON/OFF LED on Arduino Board
         buttonToggle.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View view) {
                 String cmdText = null;
