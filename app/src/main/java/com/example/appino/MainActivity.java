@@ -108,10 +108,12 @@ public class MainActivity extends AppCompatActivity {
                         switch (arduinoMsg.toLowerCase()) {
                             case "led is turned on":
                                 buttonToggle.setBackgroundColor(getResources().getColor(R.color.colorOn));
+                                buttonToggle.setText(("TURN OFF"));
                                 textViewInfo.setText("Arduino Message : " + arduinoMsg);
                                 break;
                             case "led is turned off":
                                 buttonToggle.setBackgroundColor(getResources().getColor(R.color.colorOff));
+                                buttonToggle.setText("TURN ON");
                                 textViewInfo.setText("Arduino Message : " + arduinoMsg);
                                 break;
                         }
@@ -135,8 +137,10 @@ public class MainActivity extends AppCompatActivity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View view) {
-                String cmdText = null;
-                String btnState = buttonToggle.getText().toString().toLowerCase();
+                //String cmdText = null;
+                //String btnState = buttonToggle.getText().toString().toLowerCase();
+                connectedThread.write("turn");
+                /*
                 switch (btnState) {
                     case "turn on":
                         buttonToggle.setText("Turn Off");
@@ -149,8 +153,10 @@ public class MainActivity extends AppCompatActivity {
                         cmdText = "<turn off>";
                         break;
                 }
+                */
+
                 // Send command to Arduino board
-                connectedThread.write(cmdText);
+
             }
         });
     }
