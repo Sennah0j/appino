@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private final static int CONNECTING_STATUS = 1; // used in bluetooth handler to identify message status
     private final static int MESSAGE_READ = 2; // used in bluetooth handler to identify message update
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
         final TextView textViewInfo = findViewById(R.id.textViewInfo);
         final Button buttonToggle = findViewById(R.id.buttonToggle);
         buttonToggle.setEnabled(false);
+        forwardButton.setEnabled(false);
+        backButton.setEnabled(false);
 
 
         // If a bluetooth device has been selected from SelectDeviceActivity
@@ -97,6 +100,8 @@ public class MainActivity extends AppCompatActivity {
                                 progressBar.setVisibility(View.GONE);
                                 buttonConnect.setEnabled(true);
                                 buttonToggle.setEnabled(true);
+                                forwardButton.setEnabled(true);
+                                backButton.setEnabled(true);
                                 break;
                             case -1:
                                 toolbar.setSubtitle("Device fails to connect");
@@ -163,32 +168,40 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
         forwardButton.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction() == MotionEvent.ACTION_UP){
+                if(event.getAction() == MotionEvent.ACTION_DOWN){
 
-                    // Do what you want
+                    connectedThread.write("forward");
+                    return true;
+                }
+                else if(event.getAction() == MotionEvent.ACTION_UP){
+
+                    connectedThread.write("flift");
                     return true;
                 }
                 return false;
             }
         });
-        forwardButton.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onClick(View view) {
-                connectedThread.write("forward");
-                // Send command to Arduino board forward
-            }
-        });
 
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
+
+        backButton.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View view) {
-                connectedThread.write("back");
-                // Send command to Arduino board forward
+            public boolean onTouch(View v, MotionEvent event) {
+                if(event.getAction() == MotionEvent.ACTION_DOWN){
+
+                    connectedThread.write("back");
+                    return true;
+                }
+                else if(event.getAction() == MotionEvent.ACTION_UP){
+
+                    connectedThread.write("blift");
+                    return true;
+                }
+                return false;
             }
         });
 
