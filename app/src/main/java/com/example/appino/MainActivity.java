@@ -137,10 +137,10 @@ public class MainActivity extends AppCompatActivity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View view) {
-                //String cmdText = null;
-                //String btnState = buttonToggle.getText().toString().toLowerCase();
+                String cmdText = null;
+                String btnState = buttonToggle.getText().toString().toLowerCase();
                 connectedThread.write("turn");
-                /*
+
                 switch (btnState) {
                     case "turn on":
                         buttonToggle.setText("Turn Off");
@@ -153,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
                         cmdText = "<turn off>";
                         break;
                 }
-                */
+
 
                 // Send command to Arduino board
 
