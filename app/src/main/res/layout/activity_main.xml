@@ -12,6 +12,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
@@ -20,7 +21,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:subtitleTextColor="@android:color/background_light"
-        app:title="                           Home screen"
+        app:title="Home screen"
         app:titleTextColor="@android:color/background_light" />
 
     <Button
@@ -31,6 +32,7 @@
         android:layout_marginStart="320dp"
         android:layout_marginTop="7dp"
         android:text="Connect"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/colorOff"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
@@ -40,11 +42,13 @@
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="96dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginEnd="120dp"
         android:layout_marginBottom="544dp"
         android:text="Turn On"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ProgressBar
@@ -62,20 +66,19 @@
 
     <TextView
         android:id="@+id/textViewInfo"
-        android:layout_width="349dp"
-        android:layout_height="162dp"
+        android:layout_width="348dp"
+        android:layout_height="234dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="376dp"
+        android:layout_marginTop="284dp"
         android:layout_marginEnd="16dp"
         android:autoText="true"
-        android:background="#FFFFFF"
+        android:background="#00FFFFFF"
         android:drawableTint="#000000"
         android:foregroundTint="#000000"
         android:textAlignment="center"
         android:textColor="#000000"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonToggle"
         tools:visibility="visible" />
@@ -116,7 +119,7 @@
         android:id="@+id/back_btn"
         android:layout_width="55dp"
         android:layout_height="55dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="88dp"
         android:layout_marginEnd="60dp"
         android:background="@drawable/button_arrow"
         android:foreground="@drawable/down_arrow"

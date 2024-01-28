@@ -17,6 +17,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -162,6 +163,17 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        forwardButton.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if(event.getAction() == MotionEvent.ACTION_UP){
+
+                    // Do what you want
+                    return true;
+                }
+                return false;
+            }
+        });
         forwardButton.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("SetTextI18n")
             @Override
@@ -170,6 +182,7 @@ public class MainActivity extends AppCompatActivity {
                 // Send command to Arduino board forward
             }
         });
+
         backButton.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("SetTextI18n")
             @Override
