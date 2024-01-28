@@ -51,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
         // UI Initialization
         final Button buttonConnect = findViewById(R.id.buttonConnect);
         final Toolbar toolbar = findViewById(R.id.toolbar);
+        final Button forwardButton = findViewById(R.id.forward_btn);
+        final Button backButton = findViewById(R.id.back_btn);
 
         final ProgressBar progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);
@@ -64,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         if (deviceName != null) {
             // Get the device address to make BT Connection
             deviceAddress = getIntent().getStringExtra("deviceAddress");
-            // Show progree and connection status
+            // Show progress and connection status
             toolbar.setSubtitle("Connecting to " + deviceName + "...");
             progressBar.setVisibility(View.VISIBLE);
             buttonConnect.setEnabled(false);
@@ -139,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String cmdText = null;
                 String btnState = buttonToggle.getText().toString().toLowerCase();
-                connectedThread.write("turn");
+
 
                 switch (btnState) {
                     case "turn on":
@@ -154,11 +156,29 @@ public class MainActivity extends AppCompatActivity {
                         break;
                 }
 
+                connectedThread.write(cmdText);
 
                 // Send command to Arduino board
 
             }
         });
+        forwardButton.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onClick(View view) {
+                connectedThread.write("forward");
+                // Send command to Arduino board forward
+            }
+        });
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onClick(View view) {
+                connectedThread.write("back");
+                // Send command to Arduino board forward
+            }
+        });
+
     }
 
     /* ============================ Thread to Create Bluetooth Connection =================================== */
