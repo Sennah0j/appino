@@ -17,6 +17,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private final static int CONNECTING_STATUS = 1; // used in bluetooth handler to identify message status
     private final static int MESSAGE_READ = 2; // used in bluetooth handler to identify message update
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,12 +53,16 @@ public class MainActivity extends AppCompatActivity {
         // UI Initialization
         final Button buttonConnect = findViewById(R.id.buttonConnect);
         final Toolbar toolbar = findViewById(R.id.toolbar);
+        final Button forwardButton = findViewById(R.id.forward_btn);
+        final Button backButton = findViewById(R.id.back_btn);
 
         final ProgressBar progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);
         final TextView textViewInfo = findViewById(R.id.textViewInfo);
         final Button buttonToggle = findViewById(R.id.buttonToggle);
         buttonToggle.setEnabled(false);
+        forwardButton.setEnabled(false);
+        backButton.setEnabled(false);
 
 
         // If a bluetooth device has been selected from SelectDeviceActivity
@@ -64,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         if (deviceName != null) {
             // Get the device address to make BT Connection
             deviceAddress = getIntent().getStringExtra("deviceAddress");
-            // Show progree and connection status
+            // Show progress and connection status
             toolbar.setSubtitle("Connecting to " + deviceName + "...");
             progressBar.setVisibility(View.VISIBLE);
             buttonConnect.setEnabled(false);
@@ -94,6 +100,8 @@ public class MainActivity extends AppCompatActivity {
                                 progressBar.setVisibility(View.GONE);
                                 buttonConnect.setEnabled(true);
                                 buttonToggle.setEnabled(true);
+                                forwardButton.setEnabled(true);
+                                backButton.setEnabled(true);
                                 break;
                             case -1:
                                 toolbar.setSubtitle("Device fails to connect");
@@ -139,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String cmdText = null;
                 String btnState = buttonToggle.getText().toString().toLowerCase();
-                connectedThread.write("turn");
+
 
                 switch (btnState) {
                     case "turn on":
@@ -154,11 +162,49 @@ public class MainActivity extends AppCompatActivity {
                         break;
                 }
 
+                connectedThread.write(cmdText);
 
                 // Send command to Arduino board
 
             }
         });
+
+
+        forwardButton.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if(event.getAction() == MotionEvent.ACTION_DOWN){
+
+                    connectedThread.write("forward");
+                    return true;
+                }
+                else if(event.getAction() == MotionEvent.ACTION_UP){
+
+                    connectedThread.write("flift");
+                    return true;
+                }
+                return false;
+            }
+        });
+
+
+        backButton.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if(event.getAction() == MotionEvent.ACTION_DOWN){
+
+                    connectedThread.write("back");
+                    return true;
+                }
+                else if(event.getAction() == MotionEvent.ACTION_UP){
+
+                    connectedThread.write("blift");
+                    return true;
+                }
+                return false;
+            }
+        });
+
     }
 
     /* ============================ Thread to Create Bluetooth Connection =================================== */
