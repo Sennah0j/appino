@@ -84,7 +84,7 @@
         tools:visibility="visible" />
 
     <Button
-        android:id="@+id/left"
+        android:id="@+id/left_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -94,13 +94,13 @@
         app:layout_constraintTop_toBottomOf="@+id/buttonToggle" />
 
     <Button
-        android:id="@+id/right"
+        android:id="@+id/right_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="112dp"
         android:text="Button"
-        app:layout_constraintStart_toEndOf="@+id/left"
+        app:layout_constraintStart_toEndOf="@+id/left_btn"
         app:layout_constraintTop_toBottomOf="@+id/buttonToggle" />
 
     <Button

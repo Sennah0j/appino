@@ -55,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
         final Toolbar toolbar = findViewById(R.id.toolbar);
         final Button forwardButton = findViewById(R.id.forward_btn);
         final Button backButton = findViewById(R.id.back_btn);
+        final Button leftButton = findViewById(R.id.left_btn);
+        final Button rigthButton = findViewById(R.id.right_btn);
 
         final ProgressBar progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);
@@ -199,6 +201,38 @@ public class MainActivity extends AppCompatActivity {
                 else if(event.getAction() == MotionEvent.ACTION_UP){
 
                     connectedThread.write("blift");
+                    return true;
+                }
+                return false;
+            }
+        });
+        leftButton.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if(event.getAction() == MotionEvent.ACTION_DOWN){
+
+                    connectedThread.write("left");
+                    return true;
+                }
+                else if(event.getAction() == MotionEvent.ACTION_UP){
+
+                    connectedThread.write("llift");
+                    return true;
+                }
+                return false;
+            }
+        });
+        rigthButton.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if(event.getAction() == MotionEvent.ACTION_DOWN){
+
+                    connectedThread.write("right");
+                    return true;
+                }
+                else if(event.getAction() == MotionEvent.ACTION_UP){
+
+                    connectedThread.write("rlift");
                     return true;
                 }
                 return false;
