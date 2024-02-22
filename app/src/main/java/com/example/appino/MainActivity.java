@@ -107,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
                                 buttonToggle.setEnabled(true);
                                 buttonDisconnect.setEnabled(true);
                                 forwardButton.setEnabled(true);
+                                forwardButton.setClickable(true);
                                 backButton.setEnabled(true);
                                 leftButton.setEnabled(true);
                                 rigthButton.setEnabled(true);
@@ -151,13 +152,8 @@ public class MainActivity extends AppCompatActivity {
         buttonDisconnect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (createConnectThread != null){
-                    createConnectThread.cancel();
-                }
-                Intent a = new Intent(Intent.ACTION_MAIN);
-                a.addCategory(Intent.CATEGORY_HOME);
-                a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(a);
+                connectedThread.cancel();
+                toolbar.setSubtitle("Disconnected from " + deviceName);
 
                 buttonToggle.setEnabled(false);
                 forwardButton.setEnabled(false);

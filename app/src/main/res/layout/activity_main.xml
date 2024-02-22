@@ -110,6 +110,7 @@
         android:layout_marginTop="64dp"
         android:layout_marginEnd="60dp"
         android:background="@drawable/button_arrow"
+        android:clickable="true"
         android:foreground="@drawable/up_arrow"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
