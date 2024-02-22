@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
         // UI Initialization
         final Button buttonConnect = findViewById(R.id.buttonConnect);
+        final Button buttonDisconnect = findViewById(R.id.buttonDisconnect);
         final Toolbar toolbar = findViewById(R.id.toolbar);
         final Button forwardButton = findViewById(R.id.forward_btn);
         final Button backButton = findViewById(R.id.back_btn);
@@ -65,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
         buttonToggle.setEnabled(false);
         forwardButton.setEnabled(false);
         backButton.setEnabled(false);
+        leftButton.setEnabled(false);
+        rigthButton.setEnabled(false);
 
 
         // If a bluetooth device has been selected from SelectDeviceActivity
@@ -102,8 +105,11 @@ public class MainActivity extends AppCompatActivity {
                                 progressBar.setVisibility(View.GONE);
                                 buttonConnect.setEnabled(true);
                                 buttonToggle.setEnabled(true);
+                                buttonDisconnect.setEnabled(true);
                                 forwardButton.setEnabled(true);
                                 backButton.setEnabled(true);
+                                leftButton.setEnabled(true);
+                                rigthButton.setEnabled(true);
                                 break;
                             case -1:
                                 toolbar.setSubtitle("Device fails to connect");
@@ -139,6 +145,26 @@ public class MainActivity extends AppCompatActivity {
                 // Move to adapter list
                 Intent intent = new Intent(MainActivity.this, SelectDeviceActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        buttonDisconnect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (createConnectThread != null){
+                    createConnectThread.cancel();
+                }
+                Intent a = new Intent(Intent.ACTION_MAIN);
+                a.addCategory(Intent.CATEGORY_HOME);
+                a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(a);
+
+                buttonToggle.setEnabled(false);
+                forwardButton.setEnabled(false);
+                backButton.setEnabled(false);
+                leftButton.setEnabled(false);
+                rigthButton.setEnabled(false);
+
             }
         });
 
