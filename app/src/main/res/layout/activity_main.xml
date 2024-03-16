@@ -5,13 +5,14 @@
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/background_light"
+    android:background="#B3B3B3"
     tools:context="MainActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
@@ -20,7 +21,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:subtitleTextColor="@android:color/background_light"
-        app:title="                           Home screen"
+        app:title="Home screen"
         app:titleTextColor="@android:color/background_light" />
 
     <Button
@@ -31,6 +32,7 @@
         android:layout_marginStart="320dp"
         android:layout_marginTop="7dp"
         android:text="Connect"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/colorOff"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
@@ -40,11 +42,13 @@
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="104dp"
-        android:layout_marginBottom="420dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginEnd="120dp"
+        android:layout_marginBottom="544dp"
         android:text="Turn On"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ProgressBar
@@ -62,23 +66,83 @@
 
     <TextView
         android:id="@+id/textViewInfo"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="348dp"
+        android:layout_height="234dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="284dp"
         android:layout_marginEnd="16dp"
         android:autoText="false"
-        android:background="#FFFFFF"
-        android:drawableTint="#000000"
-        android:foregroundTint="#000000"
+        android:background="#00FFFFFF"
+        android:drawableTint="#00000000"
+        android:foregroundTint="#00000000"
         android:textAlignment="center"
         android:textColor="#000000"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonToggle"
         tools:visibility="visible" />
+
+    <Button
+        android:id="@+id/left_btn"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="136dp"
+        android:background="@drawable/button_arrow"
+        android:foreground="@drawable/left_arrow"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonToggle" />
+
+    <Button
+        android:id="@+id/right_btn"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="136dp"
+        android:background="@drawable/button_arrow"
+        android:foreground="@drawable/right_arrow"
+        app:layout_constraintStart_toEndOf="@+id/left_btn"
+        app:layout_constraintTop_toBottomOf="@+id/buttonToggle" />
+
+    <Button
+        android:id="@+id/forward_btn"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="60dp"
+        android:background="@drawable/button_arrow"
+        android:clickable="true"
+        android:foreground="@drawable/up_arrow"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonToggle" />
+
+    <Button
+        android:id="@+id/back_btn"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="88dp"
+        android:layout_marginEnd="60dp"
+        android:background="@drawable/button_arrow"
+        android:foreground="@drawable/down_arrow"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/forward_btn" />
+
+    <Button
+        android:id="@+id/buttonDisconnect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="5dp"
+        android:background="#00FFFFFF"
+        android:clickable="true"
+        android:text="Disconnect"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/colorOff"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
